@@ -34,6 +34,17 @@
 - 更新信号表：哪些话意味着哪个文件该改 → [docs/updating.md](docs/updating.md)
 - 写入三规范：先读再改、带日期、记变更
 - 敏感信息红线：联系方式与密码类不入文件
+- 保鲜检查（脚本，只读）：缺文件、没填的占位符、超过 30 天没更新、
+  超过 90 天该整份重审的，一条命令列出来
+
+```bash
+python scripts/telos_freshness_check.py                 # 扫脚本旁的 profile/
+python scripts/telos_freshness_check.py --profile-dir 你的画像目录
+python scripts/telos_freshness_check.py --selftest      # 内置用例
+```
+
+退出码：0 = 新鲜，1 = 有 major 项（缺失/占位符没填/超 90 天），
+2 = 目录不存在。报告可加 `--json` 接其他工具。
 
 ## 边界
 
